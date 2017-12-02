@@ -1,0 +1,7 @@
+---
+applications:
+  - name: appdirect-integration-bv
+    buildpack: java_buildpack
+    path: target/appdirect-integration-bv-1.0.0.BUILD-SNAPSHOT.jar
+    services:
+      - mysql

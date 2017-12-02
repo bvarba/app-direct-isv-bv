@@ -1,9 +1,9 @@
-package com.bvarba.appdirect.controller.dto;
+package com.bvarba.appdirect.web.dto;
 
-public class SubscriptionNotificationResponse {
+public class NotificationEventResponse {
 	  private Boolean success;
 
-	  public SubscriptionNotificationResponse(Boolean success) {
+	  public NotificationEventResponse(Boolean success) {
 	    this.success = success;
 	  }
 

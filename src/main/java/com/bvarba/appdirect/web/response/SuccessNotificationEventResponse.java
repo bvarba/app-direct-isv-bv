@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.bvarba.appdirect.web.dto;
+package com.bvarba.appdirect.web.response;
 
 /**
  * @author Boris Varbanov

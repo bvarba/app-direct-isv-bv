@@ -3,11 +3,11 @@ package com.bvarba.appdirect.domain.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bvarba.appdirect.domain.processing.EventProcessor;
-import com.bvarba.appdirect.domain.processing.EventProcessorFactory;
+import com.bvarba.appdirect.domain.services.processing.EventProcessor;
+import com.bvarba.appdirect.domain.services.processing.EventProcessorFactory;
 import com.bvarba.appdirect.web.client.Client;
-import com.bvarba.appdirect.web.dto.NotificationEventResponse;
 import com.bvarba.appdirect.web.dtos.Event;
+import com.bvarba.appdirect.web.response.NotificationEventResponse;
 
 @Service
 public class EventHandlerService {

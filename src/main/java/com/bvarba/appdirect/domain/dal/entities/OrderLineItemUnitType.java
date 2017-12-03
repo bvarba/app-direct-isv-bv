@@ -1,4 +1,4 @@
-package com.bvarba.appdirect.domain.entities;
+package com.bvarba.appdirect.domain.dal.entities;
 
 public enum OrderLineItemUnitType {
 	USER, GIGABYTE, MEGABYTE, HOUR, MINUTE, INVOICE, UNIT,

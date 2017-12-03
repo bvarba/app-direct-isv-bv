@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.bvarba.appdirect.domain.processing;
+package com.bvarba.appdirect.domain.services.processing;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

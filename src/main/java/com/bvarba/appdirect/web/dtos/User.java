@@ -2,7 +2,12 @@ package com.bvarba.appdirect.web.dtos;
 
 import java.util.Map;
 
-public abstract class User {
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.bvarba.appdirect.domain.dal.entities.SubscriptionAccount;
+
+public class User {
   private String email;
   private String firstName;
   private String language;
@@ -13,6 +18,10 @@ public abstract class User {
   private Address address;
   private Map<String, String> attributes;
 
+  @ManyToOne
+  @JoinColumn(name = "subscriptionId")
+  private SubscriptionAccount subscription;
+  
   public String getEmail() {
     return email;
   }

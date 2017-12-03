@@ -48,8 +48,4 @@ public class BasicOAuthInterceptor implements ClientHttpRequestInterceptor {
 
         return execution.execute(request, body);
     }
-
-    private String mask( String toMask ) {
-        return toMask.replaceAll( ".", "*" );
-    }
 }

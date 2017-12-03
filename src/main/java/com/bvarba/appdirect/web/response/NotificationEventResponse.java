@@ -1,4 +1,4 @@
-package com.bvarba.appdirect.web.dto;
+package com.bvarba.appdirect.web.response;
 
 public class NotificationEventResponse {
 	  private Boolean success;

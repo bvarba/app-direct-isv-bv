@@ -1,4 +1,4 @@
-package com.bvarba.appdirect.controller;
+package com.bvarba.appdirect.web.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

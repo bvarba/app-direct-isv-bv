@@ -15,6 +15,11 @@ public class Client {
 	
 	public Event fetchEventFromUrl(String eventUrl) {
 		 restTemplate = new RestTemplate();
-	     return restTemplate.getForObject(eventUrl, Event.class);
+	        final BasicOAuthInterceptor interceptor =  new BasicOAuthInterceptor(
+	                "bvarbanov-185932",
+	        	     "jXVMBHJVNt3KRW0M");
+	        restTemplate.getInterceptors()
+	        .add(interceptor);
+		 return restTemplate.getForObject(eventUrl, Event.class);
 	}
 }

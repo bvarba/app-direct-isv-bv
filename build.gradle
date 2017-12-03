@@ -15,7 +15,7 @@ apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 
 jar {
-    baseName = 'com.vogella.springboot'
+    baseName = 'com.bvarba.appdirect'
     version = '0.0.1-SNAPSHOT'
 }
 
@@ -32,9 +32,12 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-hateoas')
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
     compile('org.springframework.boot:spring-boot-starter-data-rest')
-	compile group: 'com.appdirect', name: 'service-integration-sdk', version: '1.40'
-    compile('com.h2database:h2')
-
+	compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.13'
+	compile('com.h2database:h2')
+	compile group: 'commons-codec', name: 'commons-codec', version: '1.9'
+	compileOnly group: 'com.sun.jersey.contribs.jersey-oauth', name: 'oauth-signature', version: '1.19.4'
+	compile group: 'oauth.signpost', name: 'oauth-signpost', version: '1.2.1.2', ext: 'pom'
+  
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile('org.springframework.restdocs:spring-restdocs-mockmvc')
 }

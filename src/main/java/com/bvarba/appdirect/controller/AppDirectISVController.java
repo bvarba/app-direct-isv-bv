@@ -33,6 +33,7 @@ public class AppDirectISVController {
 				  return new ResponseEntity<NotificationEventResponse>(new NotificationEventResponse(false),HttpStatus.BAD_REQUEST);
 			  }
 	  }
+	  
 	  @RequestMapping(value="cancelSubscription",method = RequestMethod.GET)
 	  public ResponseEntity<NotificationEventResponse> cancelSubscription(@RequestParam("event") String urlEvent) {
 		  
@@ -40,7 +41,6 @@ public class AppDirectISVController {
 		     System.out.println("cancelSubscription yea:"+urlEvent);
 		  return new ResponseEntity<NotificationEventResponse>(new NotificationEventResponse(true),HttpStatus.OK);
 	  }
-	  
 	  
 	  @RequestMapping(value="consumeNotification",method = RequestMethod.GET)
 	  public ResponseEntity<NotificationEventResponse> consumeNotification(@RequestParam("event") String urlEvent) {

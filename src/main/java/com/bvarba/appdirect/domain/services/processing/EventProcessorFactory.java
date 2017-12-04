@@ -15,7 +15,6 @@ import com.bvarba.appdirect.web.dtos.EventType;
  */
 @Service
 public class EventProcessorFactory {
-	
 	@Autowired
 	@Qualifier("SubscriptionOrderProcessor") 
 	private SubscriptionOrderProcessor subscriptionOrderProcessor;
@@ -30,7 +29,7 @@ public class EventProcessorFactory {
 		}else if(eventType==EventType.SUBSCRIPTION_CANCEL) {
 			return subscriptionCanceProcessor;
 		}else {
-			throw new Exception("Unhandled event");
+			throw new RuntimeException("Unhandled event type");
 		}
 	
 	}

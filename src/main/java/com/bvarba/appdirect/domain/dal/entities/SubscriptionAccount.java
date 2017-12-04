@@ -20,6 +20,8 @@ public class SubscriptionAccount {
 	@Column(name = "subscriptionId")
 	private Integer id;
 
+	private SubscriptionAccountState accountState;
+
 	@Column(name = "accountIdentifier", unique = true)
 	private String accountIdentifier;
 
@@ -34,8 +36,6 @@ public class SubscriptionAccount {
 	private String orderEditionCode;
 	private String orderPricingDuration;
 	private Integer orderItemsQuantity;
-
-	private SubscriptionAccountState accountState;
 
 	private OrderLineItemUnitType orderItemUnit;
 

@@ -8,8 +8,11 @@ import org.springframework.stereotype.Service;
 import com.bvarba.appdirect.domain.dal.entities.SubscriptionAccount;
 import com.bvarba.appdirect.domain.dal.entities.SubscriptionAccountState;
 import com.bvarba.appdirect.domain.dal.repository.SubscriptionAccountRepository;
+import com.bvarba.appdirect.domain.rules.handlers.EventBusinessRuleHandler;
+import com.bvarba.appdirect.domain.rules.handlers.SubscriptionAccountIsNewRuleHandler;
 import com.bvarba.appdirect.web.client.BasicOAuthInterceptor;
 import com.bvarba.appdirect.web.dtos.Event;
+import com.bvarba.appdirect.web.response.ErrorNotificationEventResponse;
 import com.bvarba.appdirect.web.response.NotificationEventResponse;
 import com.bvarba.appdirect.web.response.SuccessNotificationEventResponse;
 
@@ -19,20 +22,24 @@ import com.bvarba.appdirect.web.response.SuccessNotificationEventResponse;
  */
 
 @Service("SubscriptionOrderProcessor")
-public class SubscriptionOrderProcessor implements EventProcessor{
+public class SubscriptionOrderProcessor extends EventProcessorWithRules{
     private static final Logger logger = LoggerFactory.getLogger( BasicOAuthInterceptor.class );
 
 	@Autowired
-	private SubscriptionAccountRepository subscriptionRepo;
+	private SubscriptionAccountRepository accountRepo;
 	
 	@Override
-	public NotificationEventResponse processEvent(Event event) {
-		//do validation of event, uuid exists?
+	protected EventBusinessRuleHandler buildBusinessRulesChain() {
+		EventBusinessRuleHandler rule = new SubscriptionAccountIsNewRuleHandler(accountRepo);
+		return rule;
+	}
 	
+	@Override
+	protected NotificationEventResponse processEventLogic(Event event) {	
 		SubscriptionAccount subscriptionAccount = SubscriptionAccountEntityMapper.mapEventToSubscription(event);
 		subscriptionAccount.setAccountState(SubscriptionAccountState.ACTIVE);
 		logger.info("Creating Order subscription for companyUuid: "+subscriptionAccount.getCompanyUuid());
-		subscriptionRepo.save(subscriptionAccount);
+		accountRepo.save(subscriptionAccount);
 		
 		return new SuccessNotificationEventResponse(subscriptionAccount.getAccountIdentifier());
 	}

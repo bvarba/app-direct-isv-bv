@@ -1,15 +1,13 @@
 package com.bvarba.appdirect;
 
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
+@ConfigurationProperties("app.config")
 @Component
 public class AppDirectConfig {
 
-  @Value("${config.key}")
   private String appKey;
-
-  @Value("${config.secret}")
   private String appSecret;
 
   public String getAppKey() {

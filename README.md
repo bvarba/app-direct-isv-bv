@@ -23,9 +23,9 @@ To use the live app, I'd have to assign you as a user of the application.
 If you'd like access, email me and I will include you as a user. 
 
 *Note: works only when running the app locally, not when deployed on heroku. Currently it is not enabled in live version. <br />
-*      To try it locally just rename these 2 files back to java: 
-* `app-direct-isv-bv\src\main\java\com\bvarba\appdirect\web\InMemoryConsumerDetailsServiceConfig.RENAME_TO_JAVA`
-* `app-direct-isv-bv\src\main\java\com\bvarba\appdirect\web\OAuthConfig.jRENAME_TO_JAVA`
+ To try it locally just rename these 2 files back to java: <br />
+ `app-direct-isv-bv\src\main\java\com\bvarba\appdirect\web\InMemoryConsumerDetailsServiceConfig.RENAME_TO_JAVA`<br />
+ `app-direct-isv-bv\src\main\java\com\bvarba\appdirect\web\OAuthConfig.jRENAME_TO_JAVA`<br />
 
 Or ofcourse you can run it yourself, see bellow:
 

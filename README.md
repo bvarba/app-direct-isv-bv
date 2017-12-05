@@ -1,15 +1,15 @@
 # app-direct-isv-bv
 App Direct Integration project
 
-### Welcome to my integration project with AppDirect!
+## Welcome to my integration project with AppDirect!
 Let's dive in!
 
-## End Points implemented:
-Subscription Create Notification URL
-Subscription Cancel Notification URL
-Subscription Change Notification URL 
-User Assignment Notification URL
-User Unassignment Notification URL
+### End Points implemented:
+Subscription Create Notification URL <br />
+Subscription Cancel Notification URL <br />
+Subscription Change Notification URL  <br />
+User Assignment Notification URL <br />
+User Unassignment Notification URL <br />
 
 The project is currently hosted and running on my machine live and mapped to a dns.
 All end points are mapped here:
@@ -17,7 +17,7 @@ http://bvarba.hopto.org:7789/api/developer/integration/v1/cancelSubscription?eve
 
 and I can give you access to my dev account on AppDirect to run the Integration test.
 
-## Running Requirements
+### Running Requirements
 * Java 8
 * A mysql instance running at `localhost:3306` with username `app_direct_user` and password: `<YOUR_PASSWORD>`
 
@@ -25,12 +25,12 @@ configure the `application.properties` with the username and password:
 spring.datasource.username=app_direct_user
 spring.datasource.password=`<YOUR_PASSWORD>`
 
-## Running the application - Command-line
+### Running the application - Command-line
 * gradlew startApp -Pkey="<YOUR_KEY>" -Psecret="<YOUR_SECRET>"
   <YOUR_KEY> is AppDirect developer consumer key and 
   <YOUR_SECRET> is AppDirect developer cosumer secret
 
-## Detailed Instructions
+### Detailed Instructions
 
 1. First make sure Mysql is installed. (Windows: https://dev.mysql.com/doc/workbench/en/wb-installing-windows.html)
 2. Create user: app_direct_user on the mysql instance
@@ -42,6 +42,6 @@ spring.datasource.password=`<YOUR_PASSWORD>`
 ### Changing the default port
 configure the application.properties with the username and password:
 * By default, it starts on port `7789`.
-* To change edit pplication.properties:
+* To change edit application.properties:
 * server.port=<NEW_PORT_NUMBER>
 

@@ -4,6 +4,14 @@ App Direct Integration project
 ## Welcome to my integration project with AppDirect!
 Let's dive in!
 
+### About
+The app is minimal integration of AppDirect's APIs and includes the following:
+Spring-based web application using Spring Boot
+OAuth 1.0 signing of outbound requests to AppDirect
+OAuth 1.0 one-legged authentication of incoming requests from AppDirect
+Mysql persistant database
+The app is live at https://stormy-savannah-85494.herokuapp.com/
+
 ### End Points implemented:
 Subscription Create Notification URL <br />
 Subscription Cancel Notification URL <br />
@@ -11,11 +19,10 @@ Subscription Change Notification URL  <br />
 User Assignment Notification URL <br />
 User Unassignment Notification URL <br />
 
-The project is currently hosted and running on my machine live and mapped to a dns.
-All end points are mapped here:
-http://bvarba.hopto.org:7789/api/developer/integration/v1/consumeEvent?event={eventUrl}
+To use the live app, I'd have to to be assign you as a user of the application. 
+If you'd like access, email me and I will include you as a user. 
 
-and I can give you access to my dev account on AppDirect to run the Integration test.
+Or ofcourse you can run it yourself, see bellow:
 
 ### Running Requirements
 * Java 8
@@ -26,9 +33,11 @@ spring.datasource.username=app_direct_user
 spring.datasource.password=`<YOUR_PASSWORD>`
 
 ### Running the application - Command-line
-* gradlew startApp -Pkey="<YOUR_KEY>" -Psecret="<YOUR_SECRET>"
-  <YOUR_KEY> is AppDirect developer consumer key and 
-  <YOUR_SECRET> is AppDirect developer cosumer secret
+configure the `application.properties` with you App Direct secret and key:
+config.key=<YOUR_KEY>
+config.secret=<YOUR_SECRET>
+
+* gradlew startApp
 
 ### Detailed Instructions
 1. First make sure Mysql is installed. (Windows: https://dev.mysql.com/doc/workbench/en/wb-installing-windows.html)
@@ -36,16 +45,15 @@ spring.datasource.password=`<YOUR_PASSWORD>`
 3. Start the mysql instance
 4. Run the Database create script /mysql/createDB.sql on the mysql instance. This will create app_direct_isv database and assign rights to app_direct_user
 5. To create the database from model, make sure in aplication.properties, 
-spring.jpa.hibernate.ddl-auto=create is set to create. Then start the application, from root folder: gradlew startApp -Pkey="<YOUR_KEY>" -Psecret="<YOUR_SECRET>".
+spring.jpa.hibernate.ddl-auto=create is set to create. Then start the application, from root folder: gradlew startApp. (or set it to update afterwords)
 7. Stop the application. Now The database is created.To have persistance: any Subsequent runs change: spring.jpa.hibernate.ddl-auto=none is set to none.
 8. Restart the application
 9. Test Integration Report from developer website
 
 ## Dev setup
-To just build: `gradlew build -Pkey="dummy" -Psecret="secret"`
+To just build: `gradlew build
 Set up Eclipse with Spring Tools plugin.
-you can run `gradlew clean -Pkey="dummy" -Psecret="secret"` and `gradlew eclipse -Pkey="dummy" -Psecret="secret"`
-Running/Debugging from Eclipse, add command-line args as such: --config.key=<YOUR_KEY>" --config.secret="<YOUR_SECRET>"
+you can run `gradlew clean and `gradlew eclipse
 
 ### Changing the default port
 configure the application.properties with the username and password:

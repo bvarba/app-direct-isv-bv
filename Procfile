@@ -1,1 +1,1 @@
-web:    java $JAVA_OPTS -jar -Dlocal.server.port=$PORT target/app-direct-isv-bv-0.0.1.jar
+web:    java $JAVA_OPTS -jar -Dlocal.server.port=$PORT build/libs/app-direct-isv-bv-0.0.1.jar

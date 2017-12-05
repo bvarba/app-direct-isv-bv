@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class LoginController {
-	@RequestMapping("/login")
+	@RequestMapping("/")
 	public String home() {
-		return "test";
+		return "<h2>Welcome to Boris Varbanov's AppDirect Integration Chanllenge! :D</h2>";
 	}
 }

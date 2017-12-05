@@ -21,7 +21,10 @@ public class AppDirectIntegrationApplication {
 	public EmbeddedServletContainerCustomizer containerCustomizer() {
 	    return (container -> {
 	        container.setContextPath("");
-	        container.setPort(Integer.valueOf(System.getenv("PORT")));  
+	        if(System.getenv("PORT")!=null) {
+	        	container.setPort(Integer.valueOf(System.getenv("PORT"))); 
+	       
+	        }
 	    });
 	}
 }

@@ -5,12 +5,12 @@ App Direct Integration project
 Let's dive in!
 
 ### About
-The app is minimal integration of AppDirect's APIs and includes the following:
-Spring-based web application using Spring Boot
-OAuth 1.0 signing of outbound requests to AppDirect
-OAuth 1.0 one-legged authentication of incoming requests from AppDirect
-Mysql persistant database
-The app is live at https://stormy-savannah-85494.herokuapp.com/
+The app is minimal integration of AppDirect's APIs and includes the following: <br />
+Spring-based web application using Spring Boot <br />
+OAuth 1.0 signing of outbound requests to AppDirect <br />
+OAuth 1.0 one-legged authentication of incoming requests from AppDirect <br />
+Mysql persistant database <br />
+The app is live at https://stormy-savannah-85494.herokuapp.com/ <br />
 
 ### End Points implemented:
 Subscription Create Notification URL <br />

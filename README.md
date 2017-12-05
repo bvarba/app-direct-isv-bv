@@ -8,7 +8,7 @@ Let's dive in!
 The app is minimal integration of AppDirect's APIs and includes the following: <br />
 Spring-based web application using Spring Boot <br />
 OAuth 1.0 signing of outbound requests to AppDirect <br />
-OAuth 1.0 one-legged authentication of incoming requests from AppDirect <br />
+OAuth 1.0 one-legged authentication of incoming requests from AppDirect (locally only. See *NOTE below)<br />
 Mysql persistant database <br />
 The app is live at https://stormy-savannah-85494.herokuapp.com/ <br />
 
@@ -19,8 +19,13 @@ Subscription Change Notification URL  <br />
 User Assignment Notification URL <br />
 User Unassignment Notification URL <br />
 
-To use the live app, I'd have to to be assign you as a user of the application. 
+To use the live app, I'd have to assign you as a user of the application. 
 If you'd like access, email me and I will include you as a user. 
+
+*Note: works only when running the app locally, not when deployed on heroku. Currently it is not enabled in live version. <br />
+*      To try it locally just rename these 2 files back to java: 
+* `app-direct-isv-bv\src\main\java\com\bvarba\appdirect\web\InMemoryConsumerDetailsServiceConfig.RENAME_TO_JAVA`
+* `app-direct-isv-bv\src\main\java\com\bvarba\appdirect\web\OAuthConfig.jRENAME_TO_JAVA`
 
 Or ofcourse you can run it yourself, see bellow:
 

@@ -43,7 +43,7 @@ spring.datasource.password=`<YOUR_PASSWORD>`
 To just build: `gradlew build -Pkey="dummy" -Psecret="secret"`
 Set up Eclipse with Spring Tools plugin.
 you can run `gradlew clean -Pkey="dummy" -Psecret="secret"` and `gradlew eclipse -Pkey="dummy" -Psecret="secret"`
-
+Running/Debugging from Eclipse, add command-line args as such: --config.key=<YOUR_KEY>" --config.secret="<YOUR_SECRET>"
 ### Changing the default port
 configure the application.properties with the username and password:
 * By default, it starts on port `7789`.

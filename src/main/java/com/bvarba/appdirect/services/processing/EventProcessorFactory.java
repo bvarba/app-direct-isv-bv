@@ -1,4 +1,4 @@
-package com.bvarba.appdirect.domain.services.processing;
+package com.bvarba.appdirect.services.processing;
 
 import javax.naming.OperationNotSupportedException;
 
@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.bvarba.appdirect.domain.services.processing.subscriptions.SubscriptionCancelProcessor;
-import com.bvarba.appdirect.domain.services.processing.subscriptions.SubscriptionChangeProcessor;
-import com.bvarba.appdirect.domain.services.processing.subscriptions.SubscriptionOrderProcessor;
+import com.bvarba.appdirect.services.processing.subscriptions.SubscriptionCancelProcessor;
+import com.bvarba.appdirect.services.processing.subscriptions.SubscriptionChangeProcessor;
+import com.bvarba.appdirect.services.processing.subscriptions.SubscriptionOrderProcessor;
 import com.bvarba.appdirect.web.dtos.EventType;
 
 /**

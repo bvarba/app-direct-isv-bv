@@ -1,4 +1,4 @@
-package com.bvarba.appdirect.domain.services.processing;
+package com.bvarba.appdirect.services.processing;
 
 import com.bvarba.appdirect.domain.rules.handlers.EventBusinessRuleHandler;
 import com.bvarba.appdirect.web.dtos.Event;

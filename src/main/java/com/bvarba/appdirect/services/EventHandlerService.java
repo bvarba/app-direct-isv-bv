@@ -1,10 +1,10 @@
-package com.bvarba.appdirect.domain.services;
+package com.bvarba.appdirect.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.bvarba.appdirect.domain.services.processing.EventProcessor;
-import com.bvarba.appdirect.domain.services.processing.EventProcessorFactory;
+import com.bvarba.appdirect.services.processing.EventProcessor;
+import com.bvarba.appdirect.services.processing.EventProcessorFactory;
 import com.bvarba.appdirect.web.client.Client;
 import com.bvarba.appdirect.web.dtos.Event;
 import com.bvarba.appdirect.web.response.NotificationEventResponse;

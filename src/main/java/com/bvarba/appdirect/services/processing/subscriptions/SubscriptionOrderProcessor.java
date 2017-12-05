@@ -1,4 +1,4 @@
-package com.bvarba.appdirect.domain.services.processing.subscriptions;
+package com.bvarba.appdirect.services.processing.subscriptions;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +11,7 @@ import com.bvarba.appdirect.domain.dal.entities.SubscriptionAccountState;
 import com.bvarba.appdirect.domain.dal.repository.SubscriptionAccountRepository;
 import com.bvarba.appdirect.domain.rules.handlers.EventBusinessRuleHandler;
 import com.bvarba.appdirect.domain.rules.handlers.SubscriptionAccountIsNewRuleHandler;
-import com.bvarba.appdirect.domain.services.processing.EventProcessorWithRules;
+import com.bvarba.appdirect.services.processing.EventProcessorWithRules;
 import com.bvarba.appdirect.web.client.BasicOAuthInterceptor;
 import com.bvarba.appdirect.web.dtos.Event;
 import com.bvarba.appdirect.web.response.NotificationEventResponse;

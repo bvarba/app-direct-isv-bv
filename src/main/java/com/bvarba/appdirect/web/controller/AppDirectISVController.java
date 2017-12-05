@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bvarba.appdirect.domain.rules.exceptions.BusinessRuleFailedNotificationEventException;
-import com.bvarba.appdirect.domain.services.EventHandlerService;
-import com.bvarba.appdirect.domain.services.processing.UnSupportedEventTypeException;
+import com.bvarba.appdirect.services.EventHandlerService;
+import com.bvarba.appdirect.services.processing.UnSupportedEventTypeException;
 import com.bvarba.appdirect.web.response.ErrorCode;
 import com.bvarba.appdirect.web.response.ErrorNotificationEventResponse;
 import com.bvarba.appdirect.web.response.NotificationEventResponse;

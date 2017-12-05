@@ -13,7 +13,7 @@ User Unassignment Notification URL <br />
 
 The project is currently hosted and running on my machine live and mapped to a dns.
 All end points are mapped here:
-http://bvarba.hopto.org:7789/api/developer/integration/v1/cancelSubscription?event={eventUrl}
+http://bvarba.hopto.org:7789/api/developer/integration/v1/consumeEvent?event={eventUrl}
 
 and I can give you access to my dev account on AppDirect to run the Integration test.
 

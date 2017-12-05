@@ -34,8 +34,8 @@ Or ofcourse you can run it yourself, see bellow:
 * A mysql instance running at `localhost:3306` with username `app_direct_user` and password: `<YOUR_PASSWORD>`
 
 configure the `application.properties` with the username and password:
-spring.datasource.username=app_direct_user
-spring.datasource.password=`<YOUR_PASSWORD>`
+spring.datasource.username=app_direct_user<br />
+spring.datasource.password=`<YOUR_PASSWORD>` <br />
 
 ### Running the application - Command-line
 configure the `application.properties` with you App Direct secret and key:

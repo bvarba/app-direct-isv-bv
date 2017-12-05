@@ -22,7 +22,7 @@ public class SubscriptionAccountIsNewRuleHandler extends SubscriptionAccountRule
 		SubscriptionAccount account = getAccountRepository().findByAccountIdentifier(accountIdentifier);
 
 		if (account != null) {
-			ErrorNotificationEventResponse errorResponse = new ErrorNotificationEventResponse(accountIdentifier,
+			ErrorNotificationEventResponse errorResponse = new ErrorNotificationEventResponse(
 					"Subscription account with " + accountIdentifier + " already exists...", ErrorCode.FORBIDDEN);
 			throw new BusinessRuleFailedNotificationEventException(errorResponse);
 		}

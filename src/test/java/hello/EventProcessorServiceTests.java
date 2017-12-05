@@ -5,15 +5,12 @@ import java.io.PrintStream;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
-public class HelloWorldTests {
-
-    private ByteArrayOutputStream baos = new ByteArrayOutputStream();
-    private PrintStream ps = new PrintStream(baos);
+public class EventProcessorServiceTests {
 
     @Before
     public void setup() {
-//        System.setOut(ps);
     }
 
     @Test

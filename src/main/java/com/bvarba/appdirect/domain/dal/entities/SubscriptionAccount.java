@@ -134,7 +134,7 @@ public class SubscriptionAccount {
 		return orderItemsQuantity;
 	}
 
-	public void setOrderItemsQuentity(Integer orderItemsQuentity) {
+	public void setOrderItemsQuantity(Integer orderItemsQuentity) {
 		this.orderItemsQuantity = orderItemsQuentity;
 	}
 

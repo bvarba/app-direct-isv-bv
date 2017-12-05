@@ -1,5 +1,7 @@
 package com.bvarba.appdirect.web.controller;
 
+import javax.naming.OperationNotSupportedException;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bvarba.appdirect.domain.rules.exceptions.BusinessRuleFailedNotificationEventException;
 import com.bvarba.appdirect.domain.services.EventHandlerService;
+import com.bvarba.appdirect.domain.services.processing.UnSupportedEventTypeException;
+import com.bvarba.appdirect.web.response.ErrorCode;
+import com.bvarba.appdirect.web.response.ErrorNotificationEventResponse;
 import com.bvarba.appdirect.web.response.NotificationEventResponse;
 
 @Controller
@@ -23,15 +28,25 @@ public class AppDirectISVController {
 	  private EventHandlerService eventHandlerService;
 	  
 	  @RequestMapping(value="consumeEvent",method = RequestMethod.GET)
-	  public ResponseEntity<NotificationEventResponse> consumeEvent(@RequestParam("event") String urlEvent) {
+	  public ResponseEntity<NotificationEventResponse> consumeEvent(@RequestParam("event") String urlEvent	   ) {
 		  try {
 			  NotificationEventResponse response = eventHandlerService.handleEventUrl(urlEvent);
-			  LOGGER.info("consumeEvent: "+urlEvent);
-			  System.out.println("consumeEvent: "+urlEvent);
+			  LOGGER.info("Consuming Event: "+urlEvent);
 			  return new ResponseEntity<NotificationEventResponse>(response,HttpStatus.OK);
 		  }catch(BusinessRuleFailedNotificationEventException ex) {
-			  LOGGER.error("Error passing business rules validation"+ ex);
+			  LOGGER.error("Error passing business rules validation", ex);
 			  return new ResponseEntity<NotificationEventResponse>(ex.getErrorNotificationResponse(),HttpStatus.OK);
+		  }catch(IllegalArgumentException ex) {
+			  LOGGER.error("Invalid Argument found: ", ex);
+		      return new ResponseEntity<NotificationEventResponse>(
+		    		  new ErrorNotificationEventResponse(ex.getMessage(),ErrorCode.FORBIDDEN),HttpStatus.OK);
+		  }catch(UnSupportedEventTypeException ex) {
+			  LOGGER.error("Requested event is not supported: ", ex);
+		      return new ResponseEntity<NotificationEventResponse>(
+		    		  new ErrorNotificationEventResponse(ex.getMessage(),ErrorCode.CONFIGURATION_ERROR),HttpStatus.OK);
+		  }catch(Exception ex) {
+		      return new ResponseEntity<NotificationEventResponse>(
+		    		  new ErrorNotificationEventResponse(ex.getMessage(),ErrorCode.UNKNOWN_ERROR),HttpStatus.OK);
 		  }
 	  }
 }

@@ -15,7 +15,7 @@ public class ErrorNotificationEventResponse extends NotificationEventResponse {
 		super(false);
 	}
 
-	public ErrorNotificationEventResponse(String accountIdentifier,String message, ErrorCode errorCode) {
+	public ErrorNotificationEventResponse(String message, ErrorCode errorCode) {
 		super(true);
 		this.message = message;
 		this.errorCode = errorCode;

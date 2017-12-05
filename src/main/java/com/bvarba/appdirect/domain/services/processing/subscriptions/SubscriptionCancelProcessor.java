@@ -1,4 +1,4 @@
-package com.bvarba.appdirect.domain.services.processing;
+package com.bvarba.appdirect.domain.services.processing.subscriptions;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.bvarba.appdirect.domain.dal.repository.SubscriptionAccountRepository;
 import com.bvarba.appdirect.domain.rules.handlers.EventBusinessRuleHandler;
 import com.bvarba.appdirect.domain.rules.handlers.SubscriptionAccountExistsRuleHandler;
+import com.bvarba.appdirect.domain.services.processing.EventProcessorWithRules;
 import com.bvarba.appdirect.web.dtos.Event;
 import com.bvarba.appdirect.web.response.NotificationEventResponse;
 import com.bvarba.appdirect.web.response.SuccessNotificationEventResponse;
@@ -18,7 +19,7 @@ import com.bvarba.appdirect.web.response.SuccessNotificationEventResponse;
 @Service("SubscriptionCancelProcessor")
 public class SubscriptionCancelProcessor extends EventProcessorWithRules{
 	@Autowired
-	private SubscriptionAccountRepository subscriptionRepo;
+	private SubscriptionAccountRepository subscriptionRepo;//TODO move do dal
 
 	@Override
 	protected EventBusinessRuleHandler buildBusinessRulesChain() {

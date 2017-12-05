@@ -8,7 +8,6 @@ import com.bvarba.appdirect.web.response.ErrorCode;
 import com.bvarba.appdirect.web.response.ErrorNotificationEventResponse;
 
 public class SubscriptionAccountExistsRuleHandler extends SubscriptionAccountRuleHandler{
-	
 	public SubscriptionAccountExistsRuleHandler(SubscriptionAccountRepository accountRepository) {
 		super(accountRepository);
 	}
@@ -18,7 +17,9 @@ public class SubscriptionAccountExistsRuleHandler extends SubscriptionAccountRul
 		String accountIdentifier = incomingBusinessData.getPayload().getAccount().getAccountIdentifier();
 		SubscriptionAccount account = getAccountRepository().findByAccountIdentifier(accountIdentifier);	
 		if(account==null) {
-			ErrorNotificationEventResponse errorResponse = new ErrorNotificationEventResponse(accountIdentifier, "Subscription account with "+accountIdentifier+ " does not exist...", ErrorCode.FORBIDDEN);		
+			ErrorNotificationEventResponse errorResponse = 
+					new ErrorNotificationEventResponse("Subscription account with "+accountIdentifier+ " does not exist...", 
+							ErrorCode.FORBIDDEN);		
 			throw new BusinessRuleFailedNotificationEventException(errorResponse);
 		}
 	}

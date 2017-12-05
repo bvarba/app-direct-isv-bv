@@ -1,18 +1,19 @@
-package com.bvarba.appdirect.domain.services.processing;
+package com.bvarba.appdirect.domain.services.processing.subscriptions;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bvarba.appdirect.domain.dal.SubscriptionAccountDAL;
 import com.bvarba.appdirect.domain.dal.entities.SubscriptionAccount;
 import com.bvarba.appdirect.domain.dal.entities.SubscriptionAccountState;
 import com.bvarba.appdirect.domain.dal.repository.SubscriptionAccountRepository;
 import com.bvarba.appdirect.domain.rules.handlers.EventBusinessRuleHandler;
 import com.bvarba.appdirect.domain.rules.handlers.SubscriptionAccountIsNewRuleHandler;
+import com.bvarba.appdirect.domain.services.processing.EventProcessorWithRules;
 import com.bvarba.appdirect.web.client.BasicOAuthInterceptor;
 import com.bvarba.appdirect.web.dtos.Event;
-import com.bvarba.appdirect.web.response.ErrorNotificationEventResponse;
 import com.bvarba.appdirect.web.response.NotificationEventResponse;
 import com.bvarba.appdirect.web.response.SuccessNotificationEventResponse;
 
@@ -36,7 +37,7 @@ public class SubscriptionOrderProcessor extends EventProcessorWithRules{
 	
 	@Override
 	protected NotificationEventResponse processEventLogic(Event event) {	
-		SubscriptionAccount subscriptionAccount = SubscriptionAccountEntityMapper.mapEventToSubscription(event);
+		SubscriptionAccount subscriptionAccount = SubscriptionAccountDAL.createSubscriptionFromEvent(event);
 		subscriptionAccount.setAccountState(SubscriptionAccountState.ACTIVE);
 		logger.info("Creating Order subscription for companyUuid: "+subscriptionAccount.getCompanyUuid());
 		accountRepo.save(subscriptionAccount);

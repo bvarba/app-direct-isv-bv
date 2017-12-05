@@ -4,7 +4,7 @@ public class Order {
   private String editionCode;
   private String addonOfferingCode;
   private String pricingDuration;
-  private OrderItem orderItem;
+  private OrderItem orderItem; //TODO: Currently limited to 1 order, handle array or items
   
   public String getEditionCode() {
     return editionCode;

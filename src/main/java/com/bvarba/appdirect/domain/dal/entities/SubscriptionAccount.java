@@ -17,12 +17,12 @@ import javax.persistence.Table;
 public class SubscriptionAccount {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "subscriptionId")
-	private Integer id;
+	@Column(name = "subscription_id")
+	private Integer subscriptionId;
 
 	private SubscriptionAccountState accountState;
 
-	@Column(name = "accountIdentifier", unique = true)
+	@Column(name = "account_identifier", unique = true)
 	private String accountIdentifier;
 
 	private String marketplaceBaseUrl;
@@ -35,19 +35,19 @@ public class SubscriptionAccount {
 
 	private String orderEditionCode;
 	private String orderPricingDuration;
-	private Integer orderItemsQuantity;
+	private Integer orderItemQuantity;
 
 	private OrderLineItemUnitType orderItemUnit;
 
 	@OneToMany(mappedBy = "subscriptionAccount", cascade = CascadeType.ALL, orphanRemoval = true)
-	private Set<User> subscribedUsers = new HashSet<>();
+	private Set<UserProfile> subscribedUsers = new HashSet<>();
 
 	public Integer getId() {
-		return id;
+		return subscriptionId;
 	}
 
 	public void setId(Integer id) {
-		this.id = id;
+		this.subscriptionId = id;
 	}
 
 	public String getAccountIdentifier() {
@@ -130,12 +130,12 @@ public class SubscriptionAccount {
 		this.orderPricingDuration = orderPricingDuration;
 	}
 
-	public Integer getOrderItemsQuentity() {
-		return orderItemsQuantity;
+	public Integer getOrderItemQuantity() {
+		return orderItemQuantity;
 	}
 
-	public void setOrderItemsQuantity(Integer orderItemsQuentity) {
-		this.orderItemsQuantity = orderItemsQuentity;
+	public void setOrderItemQuantity(Integer orderItemQuantity) {
+		this.orderItemQuantity = orderItemQuantity;
 	}
 
 	public OrderLineItemUnitType getOrderItemUnit() {

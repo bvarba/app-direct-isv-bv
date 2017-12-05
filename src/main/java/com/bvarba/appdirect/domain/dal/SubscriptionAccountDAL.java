@@ -2,18 +2,20 @@ package com.bvarba.appdirect.domain.dal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.bvarba.appdirect.domain.dal.entities.OrderLineItemUnitType;
 import com.bvarba.appdirect.domain.dal.entities.SubscriptionAccount;
 import com.bvarba.appdirect.domain.dal.repository.SubscriptionAccountRepository;
 import com.bvarba.appdirect.web.dtos.Company;
 import com.bvarba.appdirect.web.dtos.Event;
 import com.bvarba.appdirect.web.dtos.Marketplace;
 import com.bvarba.appdirect.web.dtos.Order;
+import com.bvarba.appdirect.web.dtos.OrderItem;
 
 public class SubscriptionAccountDAL {
 	@Autowired
 	private SubscriptionAccountRepository subscriptionRepo;
 	
-	public   SubscriptionAccountDAL() {
+	public SubscriptionAccountDAL() {
 		
 	}
 
@@ -30,22 +32,23 @@ public class SubscriptionAccountDAL {
 		subscriptionAccount.setMarketplaceBaseUrl(marketplace.getBaseUrl());
 		subscriptionAccount.setMarketplaceParner(marketplace.getPartner());
 		
-		Order order = event.getPayload().getOrder();
-		subscriptionAccount.setOrderEditionCode(order.getEditionCode());
-		subscriptionAccount.setOrderEditionCode(order.getEditionCode());
+		updateSubscriptionOrderFromEvent(subscriptionAccount,event);
 		
 		//the account is identified by the company uuid
 		subscriptionAccount.setAccountIdentifier(subscriptionAccount.getCompanyUuid());
-		
 		return subscriptionAccount;
 	}
 
-	public static boolean updateSubscriptionOrder(SubscriptionAccount subscriptionAccount, Event event) {
-
+	public static void updateSubscriptionOrderFromEvent(SubscriptionAccount subscriptionAccount, Event event) {
 		Order order = event.getPayload().getOrder();
 		subscriptionAccount.setOrderEditionCode(order.getEditionCode());
 		subscriptionAccount.setOrderPricingDuration(order.getPricingDuration());
-		//subscriptionAccount.setOrderItemsQuantity(order.get());
-		return true;
+
+		OrderItem orderItem = order.getOrderItem();
+	    if (orderItem != null) {
+	    	subscriptionAccount.setOrderItemQuantity(orderItem.getQuantity());
+	    	subscriptionAccount.setOrderItemUnit(OrderLineItemUnitType.valueOf(orderItem.getOrderItemUnit()));
+	    }
 	}
+	
 }

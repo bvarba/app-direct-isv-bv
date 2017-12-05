@@ -6,11 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bvarba.appdirect.domain.dal.SubscriptionAccountDAL;
+import com.bvarba.appdirect.domain.dal.UserProfileDAL;
 import com.bvarba.appdirect.domain.dal.entities.SubscriptionAccount;
 import com.bvarba.appdirect.domain.dal.entities.SubscriptionAccountState;
+import com.bvarba.appdirect.domain.dal.entities.UserProfile;
 import com.bvarba.appdirect.domain.dal.repository.SubscriptionAccountRepository;
+import com.bvarba.appdirect.domain.dal.repository.UserProfileRepository;
 import com.bvarba.appdirect.domain.rules.handlers.EventBusinessRuleHandler;
-import com.bvarba.appdirect.domain.rules.handlers.SubscriptionAccountIsNewRuleHandler;
+import com.bvarba.appdirect.domain.rules.handlers.subscriptions.SubscriptionAccountIsNewRuleHandler;
 import com.bvarba.appdirect.services.processing.EventProcessorWithRules;
 import com.bvarba.appdirect.web.client.BasicOAuthInterceptor;
 import com.bvarba.appdirect.web.dtos.Event;
@@ -28,9 +31,11 @@ public class SubscriptionOrderProcessor extends EventProcessorWithRules{
 
 	@Autowired
 	private SubscriptionAccountRepository accountRepo;
+	@Autowired
+	private UserProfileRepository userProfileRepo;//TODO possibly move to dal
 	
 	@Override
-	protected EventBusinessRuleHandler buildBusinessRulesChain() {
+	protected EventBusinessRuleHandler buildBusinessRulesHandlersChain() {
 		EventBusinessRuleHandler rule = new SubscriptionAccountIsNewRuleHandler(accountRepo);
 		return rule;
 	}
@@ -41,7 +46,12 @@ public class SubscriptionOrderProcessor extends EventProcessorWithRules{
 		subscriptionAccount.setAccountState(SubscriptionAccountState.ACTIVE);
 		logger.info("Creating Order subscription for companyUuid: "+subscriptionAccount.getCompanyUuid());
 		accountRepo.save(subscriptionAccount);
-		
+
+	    UserProfile admin = UserProfileDAL.createNewUserAdministrator(event);
+	    admin.setSubscriptionAccount(subscriptionAccount);
+	    logger.info("Creating admin user with UUID " + admin.getUuid() + " for company/account with UUID " + subscriptionAccount.getAccountIdentifier());
+	    userProfileRepo.save(admin);
+
 		return new SuccessNotificationEventResponse(subscriptionAccount.getAccountIdentifier());
 	}
 }

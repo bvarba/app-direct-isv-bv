@@ -1,6 +1,5 @@
 package com.bvarba.appdirect.web.controller;
 
-import javax.naming.OperationNotSupportedException;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +21,7 @@ import com.bvarba.appdirect.web.response.NotificationEventResponse;
 @RequestMapping(path = "/api/developer/integration/v1")
 public class AppDirectISVController {
 
-	  private static Logger LOGGER = Logger.getLogger(AppDirectISVController.class);
+	  private static Logger logger = Logger.getLogger(AppDirectISVController.class);
 
 	  @Autowired
 	  private EventHandlerService eventHandlerService;
@@ -31,17 +30,17 @@ public class AppDirectISVController {
 	  public ResponseEntity<NotificationEventResponse> consumeEvent(@RequestParam("event") String urlEvent	   ) {
 		  try {
 			  NotificationEventResponse response = eventHandlerService.handleEventUrl(urlEvent);
-			  LOGGER.info("Consuming Event: "+urlEvent);
+			  logger.info("Consuming Event: "+urlEvent);
 			  return new ResponseEntity<NotificationEventResponse>(response,HttpStatus.OK);
 		  }catch(BusinessRuleFailedNotificationEventException ex) {
-			  LOGGER.error("Error passing business rules validation", ex);
+			  logger.error("Error passing business rules validation", ex);
 			  return new ResponseEntity<NotificationEventResponse>(ex.getErrorNotificationResponse(),HttpStatus.OK);
 		  }catch(IllegalArgumentException ex) {
-			  LOGGER.error("Invalid Argument found: ", ex);
+			  logger.error("Invalid Argument found: ", ex);
 		      return new ResponseEntity<NotificationEventResponse>(
 		    		  new ErrorNotificationEventResponse(ex.getMessage(),ErrorCode.FORBIDDEN),HttpStatus.OK);
 		  }catch(UnSupportedEventTypeException ex) {
-			  LOGGER.error("Requested event is not supported: ", ex);
+			  logger.error("Requested event is not supported: ", ex);
 		      return new ResponseEntity<NotificationEventResponse>(
 		    		  new ErrorNotificationEventResponse(ex.getMessage(),ErrorCode.CONFIGURATION_ERROR),HttpStatus.OK);
 		  }catch(Exception ex) {

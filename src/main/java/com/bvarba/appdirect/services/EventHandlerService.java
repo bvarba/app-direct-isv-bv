@@ -19,13 +19,9 @@ public class EventHandlerService {
 	private EventProcessorFactory eventProcessorFactory;
 	
 	public NotificationEventResponse handleEventUrl(String eventUrl) {
-		try {
 		    Event event = client.fetchEventFromUrl(eventUrl);
 			EventProcessor eventProcessor = eventProcessorFactory.getEventProcessor(event.getType());
 			NotificationEventResponse response =  eventProcessor.processEvent(event);
 			return response;
-		}catch(Exception ex) {
-			return new NotificationEventResponse(false);
-		}
 	}	
 }

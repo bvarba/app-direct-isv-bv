@@ -7,9 +7,9 @@ import com.bvarba.appdirect.web.response.NotificationEventResponse;
 public abstract class EventProcessorWithRules implements EventProcessor{
 
 	public NotificationEventResponse processEvent(Event event) {
-		buildBusinessRulesChain().execute(event);
+		buildBusinessRulesHandlersChain().execute(event);
 		return processEventLogic(event);
 	}
 	protected abstract NotificationEventResponse processEventLogic(Event event) ;
-	protected abstract EventBusinessRuleHandler buildBusinessRulesChain();
+	protected abstract EventBusinessRuleHandler buildBusinessRulesHandlersChain();
 }

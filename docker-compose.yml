@@ -1,11 +1,34 @@
-# docker-compose file for creating a local development environment
-version: '2'
+version : '2'
 services:
-  db:
-    image: mysql:5.6.34
+  
+  springappserver:
+    build:
+      context: . 
+      dockerfile: appdirect.dockerfile
+    ports: 
+      - "8080:8080"
+    networks:
+      - app-direct-isv-bv
+    volumes:
+      - .:/vol/development
+    depends_on:
+      - mysqldbserver
+  
+  mysqldbserver:
+    build:
+      context: . 
+      dockerfile: mysqldb.dockerfile
     ports:
       - "3306:3306"
+    networks:
+      - app-direct-isv-db
     environment:
-      MYSQL_USER: root
-      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-      MYSQL_DATABASE: app_direct_db
+      MYSQL_DATABASE: app-direct-isv
+      MYSQL_USER: app_direct_user
+      MYSQL_PASSWORD: appdirect2017!
+      MYSQL_ROOT_PASSWORD: 
+    container_name: mysqldbserver
+
+networks:
+  app-direct-isv-db:
+    driver: bridge

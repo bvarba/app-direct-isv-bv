@@ -7,7 +7,7 @@ import com.bvarba.appdirect.domain.dal.SubscriptionAccountDAL;
 import com.bvarba.appdirect.domain.dal.entities.SubscriptionAccount;
 import com.bvarba.appdirect.domain.dal.repository.SubscriptionAccountRepository;
 import com.bvarba.appdirect.domain.rules.handlers.EventBusinessRuleHandler;
-import com.bvarba.appdirect.domain.rules.handlers.SubscriptionAccountExistsRuleHandler;
+import com.bvarba.appdirect.domain.rules.handlers.subscriptions.SubscriptionAccountExistsRuleHandler;
 import com.bvarba.appdirect.services.processing.EventProcessorWithRules;
 import com.bvarba.appdirect.web.dtos.Event;
 import com.bvarba.appdirect.web.response.NotificationEventResponse;
@@ -24,7 +24,7 @@ public class SubscriptionChangeProcessor extends EventProcessorWithRules{
 	private SubscriptionAccountRepository subscriptionRepo;
 
 	@Override
-	protected EventBusinessRuleHandler buildBusinessRulesChain() {
+	protected EventBusinessRuleHandler buildBusinessRulesHandlersChain() {
 		EventBusinessRuleHandler businessRule = new SubscriptionAccountExistsRuleHandler(subscriptionRepo);
 		//add edition different?
 		return businessRule;
@@ -34,7 +34,7 @@ public class SubscriptionChangeProcessor extends EventProcessorWithRules{
 	protected NotificationEventResponse processEventLogic(Event event) {
 		String accountIdentifier = event.getPayload().getAccount().getAccountIdentifier();
 		SubscriptionAccount account = subscriptionRepo.findByAccountIdentifier(accountIdentifier);
-		SubscriptionAccountDAL.updateSubscriptionOrder(account, event);
+		SubscriptionAccountDAL.updateSubscriptionOrderFromEvent(account, event);
 		return new SuccessNotificationEventResponse();
 	}
 }

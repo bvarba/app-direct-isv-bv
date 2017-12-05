@@ -1,4 +1,4 @@
-package com.bvarba.appdirect.domain.rules.handlers;
+package com.bvarba.appdirect.domain.rules.handlers.subscriptions;
 
 import com.bvarba.appdirect.domain.dal.entities.SubscriptionAccount;
 import com.bvarba.appdirect.domain.dal.repository.SubscriptionAccountRepository;
@@ -15,7 +15,7 @@ public class SubscriptionAccountExistsRuleHandler extends SubscriptionAccountRul
 	@Override
 	public void validate(Event incomingBusinessData) {
 		String accountIdentifier = incomingBusinessData.getPayload().getAccount().getAccountIdentifier();
-		SubscriptionAccount account = getAccountRepository().findByAccountIdentifier(accountIdentifier);	
+		SubscriptionAccount account = getRepository().findByAccountIdentifier(accountIdentifier);	
 		if(account==null) {
 			ErrorNotificationEventResponse errorResponse = 
 					new ErrorNotificationEventResponse("Subscription account with "+accountIdentifier+ " does not exist...", 

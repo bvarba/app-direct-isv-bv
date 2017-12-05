@@ -1,7 +1,5 @@
 package com.bvarba.appdirect.domain.dal.entities;
 
-import java.util.Map;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,12 +9,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class User {
+public class UserProfile {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 
-	@Column(name = "userId")
-	private Integer id;
+	@Column(name = "user_id")
+	private Integer userId;
 
 	private String email;
 	private String firstName;
@@ -26,12 +24,13 @@ public class User {
 	private String openId;
 	private String uuid;
 
-	private Boolean isCreator;
+	private Boolean isAdmin;
 
 
 	@ManyToOne
-	@JoinColumn(name = "subscriptionId")
+	@JoinColumn(name = "subscription_id")
 	private SubscriptionAccount subscriptionAccount;
+
 
 	public String getEmail() {
 		return email;
@@ -89,12 +88,19 @@ public class User {
 		this.uuid = uuid;
 	}
 
-	public Boolean getIsCreator() {
-		return isCreator;
+	public Boolean getIsAdmin() {
+		return isAdmin;
 	}
 
-	public void setIsCreator(Boolean isCreator) {
-		this.isCreator = isCreator;
+	public void setIsAdmin(Boolean isAdmin) {
+		this.isAdmin = isAdmin;
 	}
-	
+
+	public SubscriptionAccount getSubscriptionAccount() {
+		return subscriptionAccount;
+	}
+
+	public void setSubscriptionAccount(SubscriptionAccount subscriptionAccount) {
+		this.subscriptionAccount = subscriptionAccount;
+	}	
 }

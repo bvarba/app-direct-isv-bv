@@ -1,4 +1,4 @@
-package com.bvarba.appdirect.domain.rules.handlers;
+package com.bvarba.appdirect.domain.rules.handlers.subscriptions;
 
 import com.bvarba.appdirect.domain.dal.entities.SubscriptionAccount;
 import com.bvarba.appdirect.domain.dal.repository.SubscriptionAccountRepository;
@@ -19,7 +19,7 @@ public class SubscriptionAccountIsNewRuleHandler extends SubscriptionAccountRule
 				? incomingBusinessData.getPayload().getAccount().getAccountIdentifier()
 				: incomingBusinessData.getPayload().getCompany().getUuid();
 				
-		SubscriptionAccount account = getAccountRepository().findByAccountIdentifier(accountIdentifier);
+		SubscriptionAccount account = getRepository().findByAccountIdentifier(accountIdentifier);
 
 		if (account != null) {
 			ErrorNotificationEventResponse errorResponse = new ErrorNotificationEventResponse(

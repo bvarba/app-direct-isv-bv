@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.bvarba.appdirect.domain.dal.repository.SubscriptionAccountRepository;
 import com.bvarba.appdirect.domain.rules.handlers.EventBusinessRuleHandler;
-import com.bvarba.appdirect.domain.rules.handlers.SubscriptionAccountExistsRuleHandler;
+import com.bvarba.appdirect.domain.rules.handlers.subscriptions.SubscriptionAccountExistsRuleHandler;
 import com.bvarba.appdirect.services.processing.EventProcessorWithRules;
 import com.bvarba.appdirect.web.dtos.Event;
 import com.bvarba.appdirect.web.response.NotificationEventResponse;
@@ -19,18 +19,18 @@ import com.bvarba.appdirect.web.response.SuccessNotificationEventResponse;
 @Service("SubscriptionCancelProcessor")
 public class SubscriptionCancelProcessor extends EventProcessorWithRules{
 	@Autowired
-	private SubscriptionAccountRepository subscriptionRepo;//TODO move do dal
+	private SubscriptionAccountRepository subscriptionAccountRepo;//TODO move do dal
 
 	@Override
-	protected EventBusinessRuleHandler buildBusinessRulesChain() {
-		EventBusinessRuleHandler businessRule = new SubscriptionAccountExistsRuleHandler(subscriptionRepo);
+	protected EventBusinessRuleHandler buildBusinessRulesHandlersChain() {
+		EventBusinessRuleHandler businessRule = new SubscriptionAccountExistsRuleHandler(subscriptionAccountRepo);
 		return businessRule;
 	}
 	
 	@Override
 	protected NotificationEventResponse processEventLogic(Event event) {
 		String accountIdentifier = event.getPayload().getAccount().getAccountIdentifier();
-		subscriptionRepo.deleteByAccountIdentifier(accountIdentifier);
+		subscriptionAccountRepo.deleteByAccountIdentifier(accountIdentifier);
 		return new SuccessNotificationEventResponse();
 	}
 }

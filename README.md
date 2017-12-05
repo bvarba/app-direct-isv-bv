@@ -51,9 +51,9 @@ spring.jpa.hibernate.ddl-auto=create is set to create. Then start the applicatio
 9. Test Integration Report from developer website
 
 ## Dev setup
-To just build: `gradlew build
+To just build: `gradlew build`
 Set up Eclipse with Spring Tools plugin.
-you can run `gradlew clean and `gradlew eclipse
+you can run `gradlew clean` and `gradlew eclipse`
 
 ### Changing the default port
 configure the application.properties with the username and password:

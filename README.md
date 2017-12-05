@@ -39,6 +39,11 @@ spring.datasource.password=`<YOUR_PASSWORD>`
 5. To start the application, from root folder: gradlew startApp -Pkey="<YOUR_KEY>" -Psecret="<YOUR_SECRET>".
 6. Test Integration Report from developer website
 
+## Dev setup
+To just build: `gradlew build -Pkey="dummy" -Psecret="secret"`
+Set up Eclipse with Spring Tools plugin.
+you can run `gradlew clean -Pkey="dummy" -Psecret="secret"` and `gradlew eclipse -Pkey="dummy" -Psecret="secret"`
+
 ### Changing the default port
 configure the application.properties with the username and password:
 * By default, it starts on port `7789`.
